@@ -1,0 +1,15 @@
+#!/usr/bin/env bash 
+
+brew update 
+brew tap twilio/brew
+brew install \
+  vim \
+  git \
+  curl \
+  zip \
+  unzip \
+  lastpass-cli \
+  oath-toolkit \
+  awscli \
+  twilio
+
