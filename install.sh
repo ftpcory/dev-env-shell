@@ -1,4 +1,8 @@
-#!/bin/bash
+#!/usr/bin/env bash
+
+wget "https://github.com/ftpcory/dev-env-shell/archive/refs/heads/main.zip"
+unzip -o main.zip
+cd dev-env-shell-main
 
 # if this is linux, do linux things
 [[ "${OSTYPE}" == "linux"* ]] && {
