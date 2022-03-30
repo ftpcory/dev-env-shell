@@ -22,13 +22,6 @@ sudo apt install -y \
   $(lsb_release -cs) stable" | sudo tee /etc/apt/sources.list.d/docker.list > /dev/null
 }
 
-# if we haven't alread installed the twilio cli, do it
-[[ -f /etc/apt/sources.list.d/twilio.list ]] || {
-  wget -qO- https://twilio-cli-prod.s3.amazonaws.com/twilio_pub.asc | sudo apt-key add -
-  sudo touch /etc/apt/sources.list.d/twilio.list
-  echo 'deb https://twilio-cli-prod.s3.amazonaws.com/apt/ /' | sudo tee /etc/apt/sources.list.d/twilio.list
-}
-
 # install python packages 
 pip install oathtool
 
@@ -43,9 +36,8 @@ pip install oathtool
 curl -SL https://github.com/docker/compose/releases/download/v2.2.3/docker-compose-linux-x86_64 \
   -o "${HOME}/.docker/cli-plugins/docker-compose"
 
-# install the twilio cli 
+# install the docker cli 
 sudo apt update -y
 sudo apt install -y \
-  docker-ce-cli \
-  twilio
+  docker-ce-cli 
 
