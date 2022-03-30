@@ -1,0 +1,18 @@
+#!/usr/bin/env bash
+
+root="${PWD}"
+while read -r repo; do
+  path="${root}/${repo/.\/}"
+
+  # sanity checks
+  [[ ${repo} == "." ]] && continue
+  [[ -d "${path}/.git" ]] || continue
+
+  cd "${path}"
+  pwd
+  git fetch --all
+  git remote prune origin 
+  git pull
+
+done <<< "$(find . -maxdepth 1 -type d)"
+cd "${root}"
