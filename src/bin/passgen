@@ -1,0 +1,3 @@
+#!/bin/bash
+
+lpass generate --clip test 14

@@ -1,0 +1,10 @@
+#!/usr/bin/env bash
+
+host="${1:-127.0.0.1}"
+keyfile="${HOME}/.credentials/mfa/${host}"
+
+# if the key file exists, cat it's output as the token for oathtool
+[[ -f "${keyfile}" ]] && {
+  key="$(cat "${keyfile}")"
+  oathtool -b --totp "${key}"
+}

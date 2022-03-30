@@ -1,0 +1,35 @@
+#!/usr/bin/env bash
+set -e
+
+#output the beginning amount of disk usage
+df -h | grep disk1s7s1 | awk '{print $3}'
+
+# The list of folders we can wipe out
+folders=(
+  "/Users/cory/Library/Caches/"
+  "/Users/cory/Library/logs/"
+  "/Library/Caches/"
+  "/Library/logs/"
+  "/private/var/folders/"
+  "/var/log/"
+)
+
+# Iterate over the folders, and delete any files in them.
+for f in "${folders[@]}"; do
+  find "${f}" -type f -delete || true
+done
+
+# Iterate over known containers, and wipe out their caches
+for x in $(ls /Users/cory/Library/Containers/); do
+  rm -rf /Users/cory/Library/Containers/$x/Data/Library/Caches/*
+done
+
+
+# docker cleanup
+docker system prune -f -a --volumes || true
+
+# let the OS catch up a little, then output the updated disk usage
+sleep 2
+df -h | grep disk1s7s1 | awk '{print $3}'
+
+exit 0
