@@ -22,6 +22,7 @@ set encoding=UTF-8
   filetype indent plugin on
   set wildmenu
   set showmatch
+  set showtabline=2
 "}}}
 
 "{{{ Autogroups
