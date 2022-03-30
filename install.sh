@@ -24,3 +24,6 @@ cp src/.bash_aliases "${HOME}"
 cp src/.vimrc "${HOME}"
 cp -r src/.vim/ "${HOME}/.vim"
 cp -r src/bin/ "${HOME}/bin"
+
+chmod +x "${HOME}/bin/"*
+chmod +x "${HOME}/.docker/cli-plugins/"*
